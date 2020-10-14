@@ -1,15 +1,27 @@
 package main.java.domain;
 
+import javax.persistence.*;
 import java.util.ArrayList;
+import java.util.List;
 
+@Entity
 public class Product {
+
+    @Id
+    @Column(name="product_nummer")
     private int id;
-    private float prijs;
     private String naam;
+    private float prijs;
     private String beschrijving;
 
-//    private ArrayList<OVChipkaart> kaarten = new ArrayList<>();
-//
+    @ManyToMany
+    @JoinTable(
+            name = "ov_chipkaart_product",
+            joinColumns = @JoinColumn(name = "product_nummer"),
+            inverseJoinColumns = @JoinColumn(name = "kaart_nummer")
+    )
+    private List<OV_Chipkaart> kaarten = new ArrayList<>();
+
 //    public Product(int id, String naam, String beschrijving, float prijs){
 //        this.id = id;
 //        this.naam = naam;
@@ -33,15 +45,15 @@ public class Product {
 //    public void deleteCard(OVChipkaart ovChipkaart){
 //        kaarten.removeIf(kaart -> kaart.getId() == ovChipkaart.getId());
 //    }
-//
-//    public String toString() {
-//        String sString = String.format("Product { #%s, naam: %s, beschrijving: %s, prijs: %s", id, naam, beschrijving, prijs);
-//
-//        for(OVChipkaart kaart : kaarten){
-//            sString += ",\n   " + kaart;
-//        }
-//        sString += " }";
-//
-//        return sString;
-//    }
+
+    public String toString() {
+        String sString = String.format("Product { #%s, naam: %s, beschrijving: %s, prijs: %s", id, naam, beschrijving, prijs);
+
+        for(OV_Chipkaart kaart : kaarten){
+            sString += ",\n   " + kaart;
+        }
+        sString += " }";
+
+        return sString;
+    }
 }

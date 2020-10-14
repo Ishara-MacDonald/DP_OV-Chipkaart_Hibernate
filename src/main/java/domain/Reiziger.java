@@ -19,10 +19,21 @@ public class Reiziger {
     private String achternaam;
     private Date geboortedatum;
 
-    @Transient
+    @OneToOne(
+            mappedBy = "reiziger",
+            cascade = CascadeType.ALL,
+//            orphanRemoval = true,
+            fetch = FetchType.EAGER
+    )
     private Adres adres;
 
-//    private List<OVChipkaart> kaarten = new ArrayList<>();
+    @OneToMany(
+            mappedBy = "reiziger",
+            cascade = CascadeType.ALL,
+//            orphanRemoval = true,
+            fetch = FetchType.LAZY
+    )
+    private List<OV_Chipkaart> kaarten = new ArrayList<>();
 
 //    public Reiziger(int id, String voorletters, String tussenvoegsel, String achternaam, Date geboortedatum){
 //        this.id = id;
@@ -32,7 +43,7 @@ public class Reiziger {
 //        this.geboortedatum = geboortedatum;
 //    }
 //
-//    public int getId() { return id; }
+    public int getId() { return id; }
 //    public String getVoorletters() { return voorletters; }
 //    public String getTussenvoegsel() { return tussenvoegsel; }
 //    public String getAchternaam() { return achternaam; }
@@ -55,13 +66,14 @@ public class Reiziger {
 //    }
 //
     public String toString() {
-        String sString = String.format("Reiziger { #%s %s. %s %s, geb. %s }", id, voorletters, tussenvoegsel, achternaam, geboortedatum.toString());
+        String sString = String.format("Reiziger { #%s %s. %s %s, geb. %s ", id, voorletters, tussenvoegsel, achternaam, geboortedatum.toString());
         if(adres != null){
-            sString = String.format("Reiziger { #%s %s. %s %s, geb. %s, %s }", id, voorletters, tussenvoegsel, achternaam, geboortedatum.toString(), adres.toString());
+            sString = String.format("Reiziger { #%s %s. %s %s, geb. %s, %s ", id, voorletters, tussenvoegsel, achternaam, geboortedatum.toString(), adres.toString());
         }
-//        for(OVChipkaart kaart : kaarten){
-//            sString += kaart + "\n";
-//        }
+        for(OV_Chipkaart kaart : kaarten){
+            sString += "\n   " + kaart;
+        }
+        sString+="}";
         return sString;
     }
 }

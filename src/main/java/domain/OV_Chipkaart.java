@@ -1,15 +1,23 @@
 package main.java.domain;
 
+import javax.persistence.*;
 import java.util.ArrayList;
 import java.util.Date;
 
-public class OVChipkaart {
+@Entity
+public class OV_Chipkaart {
+
+    @Id
+    @Column(name="kaart_nummer")
     private int id;
     private int klasse;
     private float saldo;
-
     private Date geldig_tot;
+
+    @ManyToOne
+    @JoinColumn(name="reiziger_id")
     private Reiziger reiziger;
+//    @Column(name="reiziger_id")
 
 //    private ArrayList<Product> producten = new ArrayList<>();
 //
@@ -40,15 +48,14 @@ public class OVChipkaart {
 //        producten.removeIf(product -> product.getId() == newProduct.getId());
 //    }
 //
-//    public String toString() {
-//        String sString = String.format("OVChipkaart { #%s geldig tot: %s, klasse: %s, saldo: %s, reiziger_id: %s }", id, geldig_tot, klasse, saldo, reiziger.getId());
-//
+    public String toString() {
+//        String sString =
+
 //        for(Product product : producten){
 //            sString += "\n" + product.getNaam();
 //        }
-//
+
 //        sString += " }";
-//
-//        return sString;
-//    }
+        return String.format("OVChipkaart { #%s geldig tot: %s, klasse: %s, saldo: %s}", id, geldig_tot, klasse, saldo);
+    }
 }

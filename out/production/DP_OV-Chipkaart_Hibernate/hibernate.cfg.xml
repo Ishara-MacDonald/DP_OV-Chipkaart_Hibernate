@@ -12,6 +12,8 @@
 
         <mapping class="main.java.domain.Reiziger"/>
         <mapping class="main.java.domain.Adres"/>
+        <mapping class="main.java.domain.OV_Chipkaart"/>
+        <mapping class="main.java.domain.Product"/>
     </session-factory>
 </hibernate-configuration>
 

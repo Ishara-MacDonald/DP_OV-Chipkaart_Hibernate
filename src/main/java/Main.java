@@ -56,7 +56,7 @@ public class Main {
 
                 System.out.println("[Test] Alle objecten van type " + entityType.getName() + " uit database:");
                 for (Object o : query.list()) {
-                    System.out.println("  " + o);
+                    System.out.println(o);
                 }
                 System.out.println();
             }

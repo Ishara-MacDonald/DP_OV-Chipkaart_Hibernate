@@ -1,9 +1,6 @@
 package main.java.domain;
 
-import javax.persistence.Column;
-import javax.persistence.Entity;
-import javax.persistence.Id;
-import javax.persistence.Transient;
+import javax.persistence.*;
 
 @Entity
 public class Adres {
@@ -16,7 +13,9 @@ public class Adres {
     private String straat;
     private String woonplaats;
 
-    private int reiziger_id;
+    @OneToOne
+    @JoinColumn(name="reiziger_id")
+    private Reiziger reiziger;
 
 //    public Adres(int id, String postcode, String huisnummer, String straat, String woonplaats, int reiziger_id){
 //        this.id = id;
