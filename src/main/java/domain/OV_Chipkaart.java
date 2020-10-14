@@ -1,8 +1,10 @@
 package main.java.domain;
 
 import javax.persistence.*;
+import java.time.LocalDate;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.List;
 
 @Entity
 public class OV_Chipkaart {
@@ -12,36 +14,40 @@ public class OV_Chipkaart {
     private int id;
     private int klasse;
     private float saldo;
-    private Date geldig_tot;
+    private LocalDate geldig_tot;
 
     @ManyToOne
     @JoinColumn(name="reiziger_id")
     private Reiziger reiziger;
-//    @Column(name="reiziger_id")
 
 //    private ArrayList<Product> producten = new ArrayList<>();
+
+    public OV_Chipkaart(int kaartnr, LocalDate geldig_tot, int klasse, float saldo, Reiziger reiziger){
+        this.id = kaartnr;
+        this.geldig_tot = geldig_tot;
+        this.klasse = klasse;
+        this.saldo = saldo;
+        this.reiziger = reiziger;
+    }
+
+    public OV_Chipkaart() {
+
+    }
+
+    //
+    public int getId() { return id; }
+    public LocalDate getGeldig_tot() { return geldig_tot; }
+    public int getKlasse() { return klasse; }
+    public float getSaldo() { return saldo; }
+    public Reiziger getReiziger() { return reiziger; }
+//    public List<Product> getProducten() { return producten; }
 //
-//    public OVChipkaart(int kaartnr, Date geldig_tot, int klasse, float saldo, Reiziger reiziger){
-//        this.id = kaartnr;
-//        this.geldig_tot = geldig_tot;
-//        this.klasse = klasse;
-//        this.saldo = saldo;
-//        this.reiziger = reiziger;
-//    }
-//
-//    public int getId() { return id; }
-//    public Date getGeldig_tot() { return geldig_tot; }
-//    public int getKlasse() { return klasse; }
-//    public float getSaldo() { return saldo; }
-//    public Reiziger getReiziger() { return reiziger; }
-//    public ArrayList<Product> getProducten() { return producten; }
-//
-//    public void setId(int id) { this.id = id; }
-//    public void setGeldig_tot(Date geldig_tot) { this.geldig_tot = geldig_tot; }
-//    public void setKlasse(int klasse) { this.klasse = klasse; }
-//    public void setSaldo(float saldo) { this.saldo = saldo; }
-//    public void setReiziger(Reiziger reiziger){ this.reiziger = reiziger; }
-//    public void setProducten(ArrayList<Product> producten) { this.producten = producten; }
+    public void setId(int id) { this.id = id; }
+    public void setGeldig_tot(LocalDate geldig_tot) { this.geldig_tot = geldig_tot; }
+    public void setKlasse(int klasse) { this.klasse = klasse; }
+    public void setSaldo(float saldo) { this.saldo = saldo; }
+    public void setReiziger(Reiziger reiziger){ this.reiziger = reiziger; }
+//    public void setProducten(List<Product> producten) { this.producten = producten; }
 //
 //    public boolean addProduct(Product product){ return producten.add(product); }
 //    public void deleteProduct(Product newProduct){
