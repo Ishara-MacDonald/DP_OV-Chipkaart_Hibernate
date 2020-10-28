@@ -130,10 +130,6 @@ public class Main {
         rdao.delete(sietske);
         System.out.println(rdao.findAll().size() + " reizigers");
 
-        rdao.closeCurrentSessionwithTransaction();
-        rdao.closeCurrentSession();
-
-
         System.out.println("\n---------- Test AdresDAO -------------");
         Reiziger newReiziger = new Reiziger(77, "S", "", "Boers", LocalDate.of(1981,3,14));
         Adres newAdres = new Adres(7, "3455XD", "10", "de Landlaan","Utrecht", newReiziger);

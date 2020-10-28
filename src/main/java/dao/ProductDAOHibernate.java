@@ -91,25 +91,13 @@ public class ProductDAOHibernate implements ProductDAO{
                 "FROM product prod\n" +
                 "INNER JOIN ov_chipkaart_product ovproduct\n" +
                 "ON prod.product_nummer = ovproduct.product_nummer\n" +
-                "WHERE ovproduct.kaart_nummer = %s;",ovChipkaart.getId());
+                "WHERE ovproduct.kaart_nummer = %s",ovChipkaart.getId());
         return (List<Product>) currentSession.createQuery(queryGetKaarten).list();
     }
 
     @Override
     public List<Product> findAll() {
-        String queryGetProducts = "SELECT * FROM product";
-        List<Product> products = (List<Product>) currentSession.createQuery(queryGetProducts).list();
-
-        for(Product product : products){
-            String queryGetAllPairingCards = String.format("SELECT kaart.kaart_nummer, geldig_tot, klasse, saldo, reiziger_id\n" +
-                    "FROM ov_chipkaart kaart\n" +
-                    "INNER JOIN ov_chipkaart_product ovproduct\n" +
-                    "ON kaart.kaart_nummer = ovproduct.kaart_nummer\n" +
-                    "WHERE ovproduct.product_nummer = %s;", product.getId());
-            List<OV_Chipkaart> kaarten = (List<OV_Chipkaart>) currentSession.createQuery(queryGetAllPairingCards).list();
-            product.setKaarten(kaarten);
-        }
-        return products;
+        return (List<Product>) currentSession.createQuery("from Product").list();
     }
 
     @Override

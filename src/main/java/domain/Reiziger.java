@@ -1,11 +1,9 @@
 package main.java.domain;
 
 import javax.persistence.Entity;
-import javax.persistence.Transient;
 import javax.persistence.*;
 import java.time.LocalDate;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.List;
 
 @Entity
@@ -23,7 +21,6 @@ public class Reiziger {
     @OneToOne(
             mappedBy = "reiziger",
             cascade = CascadeType.ALL,
-//            orphanRemoval = true,
             fetch = FetchType.EAGER
     )
     private Adres adres;
@@ -31,7 +28,6 @@ public class Reiziger {
     @OneToMany(
             mappedBy = "reiziger",
             cascade = CascadeType.ALL,
-//            orphanRemoval = true,
             fetch = FetchType.LAZY
     )
     private List<OV_Chipkaart> kaarten = new ArrayList<>();

@@ -20,7 +20,10 @@ public class OV_Chipkaart {
     @JoinColumn(name="reiziger_id")
     private Reiziger reiziger;
 
-//    private ArrayList<Product> producten = new ArrayList<>();
+    @ManyToMany(
+            mappedBy = "kaarten"
+    )
+    private List<Product> producten = new ArrayList<>();
 
     public OV_Chipkaart(int kaartnr, LocalDate geldig_tot, int klasse, float saldo, Reiziger reiziger){
         this.id = kaartnr;
